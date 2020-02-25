@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{person.name}} --- {{person.age}}</h1>
+        <h2>{{person.desc}}</h2>
+        <ul>
+            <li>11111111</li>
+            <li>22222222</li>
+            <li v-if="ifShow">33333333</li>
+            <li v-else-if="ifShow">44444444</li>
+            <li>55555555</li>
+            <li>66666666</li>
+        </ul>
+        <div>
+            <img v-bind:src="img" height="20" alt="图片" />
+            <img :src="img" height="20" alt="图片" />
+        </div>
+        <p v-show="person.name">v-show控制{{person.name}}</p>
+        <p v-show="displayNode">v-show displayNode 控制{{person.name}}</p>
+        <p v-text="person.name"></p>
+        <p v-text="text"></p>
+        <p v-html="html"></p>
+        <input type="text" v-model="person.desc" />
+        <div v-on:click="_onClick">点击触发事件</div>
+        <div @click="_onClick">点击触发事件</div>
+    </div>
+
+    <script src="./src/Updater.js"></script>
+    <script src="./src/Dep.js"></script>
+    <script src="./src/Watcher.js"></script>
+    <script src="./src/Observer.js"></script>
+    <script src="./src//Compile.js"></script>
+    <script src="./src/MyVue.js"></script>
+    <script src="./src/common.js"></script>
+    <script>
+        const vm = new MyVue({
+            el: '#app',
+            data: {
+                person: {
+                    name: '张三', age: 30, desc: '我是一名程序员...'
+                },
+                img: './static/5.jpg',
+                text: 'MVVM的v-text指令',
+                html: '<h3>66666666666666666666</h3>',
+                value: '学习MVVM',
+                displayNode: false,
+                ifShow: true,
+                ifNode: false,
+                list: ['a', 'b', 'c', 'd', 'e']
+            },
+            methods: {
+                _onClick(e) {
+                    this.html = '<h1 style="color:red;">888888888888</h1>'
+                    this.text = 'testtttttt'
+                    console.log(this.text)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
